@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.products',
     'apps.cart',
-    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
