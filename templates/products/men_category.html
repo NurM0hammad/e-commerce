@@ -1,0 +1,784 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Men's Fashion | Borcelle{% endblock %}
+
+{% block content %}
+<!-- Category Header with Hero Banner -->
+<section class="category-hero-section py-4">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-primary text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'products:categories' %}" class="text-primary text-decoration-none">Categories</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Men's Fashion</li>
+                    </ol>
+                </nav>
+                
+                <h1 class="display-4 fw-bold mb-3">Men's <span class="text-primary">Fashion</span></h1>
+                <p class="lead text-secondary mb-4">Discover the latest trends in men's clothing, from casual wear to formal attire. Quality fabrics, modern designs, and perfect fit for the modern man.</p>
+                
+                <div class="d-flex gap-3 mb-4 flex-wrap">
+                    <div class="stat-item text-center p-3 bg-light rounded-4">
+                        <span class="fs-3 fw-bold text-primary d-block">350+</span>
+                        <span class="small text-secondary">Products</span>
+                    </div>
+                    <div class="stat-item text-center p-3 bg-light rounded-4">
+                        <span class="fs-3 fw-bold text-primary d-block">50+</span>
+                        <span class="small text-secondary">Brands</span>
+                    </div>
+                    <div class="stat-item text-center p-3 bg-light rounded-4">
+                        <span class="fs-3 fw-bold text-primary d-block">24</span>
+                        <span class="small text-secondary">Deals</span>
+                    </div>
+                </div>
+                
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="#featured-products" class="btn btn-primary rounded-pill px-4 py-2">
+                        Shop Now <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                    <a href="#deals" class="btn btn-outline-primary rounded-pill px-4 py-2">
+                        View Deals <i class="fas fa-tags ms-2"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="{% static 'images/categories/men-hero.png' %}" alt="Men's Fashion" class="img-fluid floating" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Category Features -->
+<section class="category-features py-4">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 bg-light text-center p-3">
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <i class="fas fa-tshirt fs-3 text-primary"></i>
+                        <span class="fw-semibold">Premium Quality</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 bg-light text-center p-3">
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <i class="fas fa-ruler fs-3 text-primary"></i>
+                        <span class="fw-semibold">Perfect Fit</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 bg-light text-center p-3">
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <i class="fas fa-truck fs-3 text-primary"></i>
+                        <span class="fw-semibold">Free Shipping</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 bg-light text-center p-3">
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <i class="fas fa-undo-alt fs-3 text-primary"></i>
+                        <span class="fw-semibold">Easy Returns</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Subcategories Section -->
+<section class="subcategories-section py-4">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Shop by <span class="text-primary">Category</span></h2>
+        
+        <div class="row g-4">
+            <!-- T-Shirts -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <a href="{% url 'products:shop' %}?category=men&subcategory=tshirts" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-3 subcategory-card">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-tshirt fa-2x text-primary"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">T-Shirts</h6>
+                        <small class="text-secondary">45 items</small>
+                    </div>
+                </a>
+            </div>
+            <!-- Shirts -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <a href="{% url 'products:shop' %}?category=men&subcategory=shirts" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-3 subcategory-card">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-user-tie fa-2x text-primary"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Shirts</h6>
+                        <small class="text-secondary">38 items</small>
+                    </div>
+                </a>
+            </div>
+            <!-- Jeans -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <a href="{% url 'products:shop' %}?category=men&subcategory=jeans" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-3 subcategory-card">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-vest fa-2x text-primary"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Jeans</h6>
+                        <small class="text-secondary">32 items</small>
+                    </div>
+                </a>
+            </div>
+            <!-- Jackets -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <a href="{% url 'products:shop' %}?category=men&subcategory=jackets" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-3 subcategory-card">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-vest fa-2x text-primary"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Jackets</h6>
+                        <small class="text-secondary">24 items</small>
+                    </div>
+                </a>
+            </div>
+            <!-- Shoes -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <a href="{% url 'products:shop' %}?category=men&subcategory=shoes" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-3 subcategory-card">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-shoe-prints fa-2x text-primary"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Shoes</h6>
+                        <small class="text-secondary">29 items</small>
+                    </div>
+                </a>
+            </div>
+            <!-- Accessories -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <a href="{% url 'products:shop' %}?category=men&subcategory=accessories" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-3 subcategory-card">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-clock fa-2x text-primary"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Accessories</h6>
+                        <small class="text-secondary">19 items</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filter and Sort Bar -->
+<section class="filter-bar-section py-3">
+    <div class="container">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center gap-3 flex-wrap">
+                            <button class="btn btn-outline-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menFilterSidebar">
+                                <i class="fas fa-filter me-2"></i>Filter
+                            </button>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-outline-secondary active" data-view="grid">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="btn btn-outline-secondary" data-view="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                            <span class="text-secondary" id="resultCount">Showing 48 products</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-md-end gap-2 flex-wrap">
+                            <select class="form-select w-auto" id="sortSelect">
+                                <option value="default">Sort by: Featured</option>
+                                <option value="newest">Newest</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                                <option value="name-asc">Name: A-Z</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section with Sidebar -->
+<section class="products-section py-4">
+    <div class="container">
+        <div class="row">
+            <!-- Filter Sidebar (Desktop) -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="card border-0 shadow-sm sticky-top" style="top: 100px;">
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-3"><i class="fas fa-sliders-h text-primary me-2"></i>Filters</h5>
+                        
+                        <!-- Categories -->
+                        <div class="mb-4">
+                            <h6 class="fw-semibold mb-3">Categories</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="catTshirts">
+                                <label class="form-check-label" for="catTshirts">T-Shirts (45)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="catShirts">
+                                <label class="form-check-label" for="catShirts">Shirts (38)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="catJeans">
+                                <label class="form-check-label" for="catJeans">Jeans (32)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="catJackets">
+                                <label class="form-check-label" for="catJackets">Jackets (24)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="catShoes">
+                                <label class="form-check-label" for="catShoes">Shoes (29)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="catAccessories">
+                                <label class="form-check-label" for="catAccessories">Accessories (19)</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Size -->
+                        <div class="mb-4">
+                            <h6 class="fw-semibold mb-3">Size</h6>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <span class="border rounded-pill px-3 py-1 size-filter" data-size="XS">XS</span>
+                                <span class="border rounded-pill px-3 py-1 size-filter" data-size="S">S</span>
+                                <span class="border rounded-pill px-3 py-1 size-filter active" data-size="M">M</span>
+                                <span class="border rounded-pill px-3 py-1 size-filter" data-size="L">L</span>
+                                <span class="border rounded-pill px-3 py-1 size-filter" data-size="XL">XL</span>
+                                <span class="border rounded-pill px-3 py-1 size-filter" data-size="XXL">XXL</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Color -->
+                        <div class="mb-4">
+                            <h6 class="fw-semibold mb-3">Color</h6>
+                            <div class="d-flex gap-2 flex-wrap">
+                                <div class="color-filter" style="width: 30px; height: 30px; background: #000; border-radius: 50%; cursor: pointer;" data-color="Black"></div>
+                                <div class="color-filter" style="width: 30px; height: 30px; background: #fff; border: 1px solid #ddd; border-radius: 50%; cursor: pointer;" data-color="White"></div>
+                                <div class="color-filter" style="width: 30px; height: 30px; background: #1e4dd8; border-radius: 50%; cursor: pointer;" data-color="Blue"></div>
+                                <div class="color-filter" style="width: 30px; height: 30px; background: #808080; border-radius: 50%; cursor: pointer;" data-color="Grey"></div>
+                                <div class="color-filter" style="width: 30px; height: 30px; background: #8b4513; border-radius: 50%; cursor: pointer;" data-color="Brown"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Range -->
+                        <div class="mb-4">
+                            <h6 class="fw-semibold mb-3">Price Range</h6>
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label class="small text-secondary">Min ($)</label>
+                                    <input type="number" class="form-control form-control-sm" id="minPrice" value="0" min="0">
+                                </div>
+                                <div class="col-6">
+                                    <label class="small text-secondary">Max ($)</label>
+                                    <input type="number" class="form-control form-control-sm" id="maxPrice" value="500" min="0">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm w-100" id="applyPriceFilter">Apply</button>
+                        </div>
+                        
+                        <!-- Brand -->
+                        <div class="mb-4">
+                            <h6 class="fw-semibold mb-3">Brand</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="brandNike">
+                                <label class="form-check-label" for="brandNike">Nike</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="brandAdidas">
+                                <label class="form-check-label" for="brandAdidas">Adidas</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="brandPuma">
+                                <label class="form-check-label" for="brandPuma">Puma</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="brandLevis">
+                                <label class="form-check-label" for="brandLevis">Levi's</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="brandZara">
+                                <label class="form-check-label" for="brandZara">Zara</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Rating -->
+                        <div class="mb-4">
+                            <h6 class="fw-semibold mb-3">Rating</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="rating5">
+                                <label class="form-check-label" for="rating5">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="rating4">
+                                <label class="form-check-label" for="rating4">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i> & up
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rating3">
+                                <label class="form-check-label" for="rating3">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i> & up
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-outline-secondary w-100" id="clearFilters">Clear All</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Products Grid/List -->
+            <div class="col-lg-9">
+                <!-- Grid View -->
+                <div class="row g-4" id="productsGridView">
+                    <!-- Product 1 - T-Shirt -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card border-0 shadow-sm h-100 product-card">
+                            <div class="position-relative">
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-3">-25%</span>
+                                <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3">NEW</span>
+                                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Men's T-Shirt" style="height: 250px; object-fit: cover;">
+                                <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="1001">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-secondary small mb-1">T-Shirts</p>
+                                <h6 class="fw-bold mb-2">Premium Cotton T-Shirt</h6>
+                                <div class="text-warning small mb-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <span class="text-secondary ms-1">(156)</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <span class="fs-5 fw-bold text-primary">$29.99</span>
+                                    <span class="text-decoration-line-through text-secondary">$39.99</span>
+                                </div>
+                                <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="1001">
+                                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 - Shirt -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card border-0 shadow-sm h-100 product-card">
+                            <div class="position-relative">
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-3">-30%</span>
+                                <img src="https://images.unsplash.com/photo-1596755094518-9943c5d0e9b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Men's Shirt" style="height: 250px; object-fit: cover;">
+                                <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="1002">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-secondary small mb-1">Shirts</p>
+                                <h6 class="fw-bold mb-2">Classic Oxford Shirt</h6>
+                                <div class="text-warning small mb-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="text-secondary ms-1">(128)</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <span class="fs-5 fw-bold text-primary">$49.99</span>
+                                    <span class="text-decoration-line-through text-secondary">$69.99</span>
+                                </div>
+                                <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="1002">
+                                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 - Jeans -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card border-0 shadow-sm h-100 product-card">
+                            <div class="position-relative">
+                                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3"><i class="fas fa-bolt me-1"></i>DEAL</span>
+                                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Men's Jeans" style="height: 250px; object-fit: cover;">
+                                <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="1003">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-secondary small mb-1">Jeans</p>
+                                <h6 class="fw-bold mb-2">Slim Fit Denim Jeans</h6>
+                                <div class="text-warning small mb-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <span class="text-secondary ms-1">(203)</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <span class="fs-5 fw-bold text-primary">$59.99</span>
+                                    <span class="text-decoration-line-through text-secondary">$89.99</span>
+                                </div>
+                                <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="1003">
+                                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 - Jacket -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card border-0 shadow-sm h-100 product-card">
+                            <div class="position-relative">
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-3">-20%</span>
+                                <img src="https://images.unsplash.com/photo-1551537482-f2075a1d41f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Men's Jacket" style="height: 250px; object-fit: cover;">
+                                <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="1004">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-secondary small mb-1">Jackets</p>
+                                <h6 class="fw-bold mb-2">Denim Trucker Jacket</h6>
+                                <div class="text-warning small mb-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="text-secondary ms-1">(89)</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <span class="fs-5 fw-bold text-primary">$79.99</span>
+                                    <span class="text-decoration-line-through text-secondary">$99.99</span>
+                                </div>
+                                <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="1004">
+                                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 - Shoes -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card border-0 shadow-sm h-100 product-card">
+                            <div class="position-relative">
+                                <span class="badge bg-success position-absolute top-0 start-0 m-3">NEW</span>
+                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Men's Shoes" style="height: 250px; object-fit: cover;">
+                                <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="1005">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-secondary small mb-1">Shoes</p>
+                                <h6 class="fw-bold mb-2">Running Sneakers</h6>
+                                <div class="text-warning small mb-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    <span class="text-secondary ms-1">(312)</span>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="fs-5 fw-bold text-primary">$89.99</span>
+                                </div>
+                                <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="1005">
+                                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 - Accessories -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card border-0 shadow-sm h-100 product-card">
+                            <div class="position-relative">
+                                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3">-15%</span>
+                                <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Men's Watch" style="height: 250px; object-fit: cover;">
+                                <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="1006">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-secondary small mb-1">Accessories</p>
+                                <h6 class="fw-bold mb-2">Classic Leather Watch</h6>
+                                <div class="text-warning small mb-2">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    <span class="text-secondary ms-1">(67)</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2 mb-3">
+                                    <span class="fs-5 fw-bold text-primary">$129.99</span>
+                                    <span class="text-decoration-line-through text-secondary">$149.99</span>
+                                </div>
+                                <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="1006">
+                                    <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <nav class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deals Banner -->
+<section class="deals-banner py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center p-5 rounded-4" style="background: linear-gradient(135deg, #1e4dd8, #fbbf24);">
+            <div class="col-lg-8 text-white">
+                <span class="badge bg-warning text-dark px-3 py-2 mb-3"><i class="fas fa-bolt me-2"></i>FLASH SALE</span>
+                <h2 class="display-5 fw-bold mb-3">Men's Weekend Special</h2>
+                <p class="lead text-white-50 mb-4">Extra 20% off on all men's fashion + free shipping</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="{% url 'products:deals' %}" class="btn btn-warning btn-lg rounded-pill px-4">
+                        Shop Now <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                        View All Deals
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <img src="{% static 'images/categories/men-sale.png' %}" alt="Men's Sale" class="img-fluid floating" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile Filter Sidebar (Offcanvas) -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="menFilterSidebar">
+    <div class="offcanvas-header bg-primary text-white">
+        <h5 class="offcanvas-title"><i class="fas fa-sliders-h me-2"></i>Filters</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- Same filter content as desktop -->
+        <div class="mb-4">
+            <h6 class="fw-semibold mb-3">Categories</h6>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="mobileCatTshirts">
+                <label class="form-check-label" for="mobileCatTshirts">T-Shirts (45)</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="mobileCatShirts">
+                <label class="form-check-label" for="mobileCatShirts">Shirts (38)</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="mobileCatJeans">
+                <label class="form-check-label" for="mobileCatJeans">Jeans (32)</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="mobileCatJackets">
+                <label class="form-check-label" for="mobileCatJackets">Jackets (24)</label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="mobileCatShoes">
+                <label class="form-check-label" for="mobileCatShoes">Shoes (29)</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="mobileCatAccessories">
+                <label class="form-check-label" for="mobileCatAccessories">Accessories (19)</label>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <h6 class="fw-semibold mb-3">Price Range</h6>
+            <div class="row g-2 mb-3">
+                <div class="col-6">
+                    <input type="number" class="form-control" placeholder="Min" id="mobileMinPrice" value="0">
+                </div>
+                <div class="col-6">
+                    <input type="number" class="form-control" placeholder="Max" id="mobileMaxPrice" value="500">
+                </div>
+            </div>
+            <button class="btn btn-primary w-100" id="mobileApplyPrice">Apply</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.subcategory-card {
+    transition: all 0.3s ease;
+}
+
+.subcategory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.size-filter {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.size-filter:hover {
+    background-color: var(--bs-primary);
+    color: white;
+    border-color: var(--bs-primary);
+}
+
+.size-filter.active {
+    background-color: var(--bs-primary);
+    color: white;
+    border-color: var(--bs-primary);
+}
+
+.color-filter {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-filter:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--bs-primary);
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.quick-view {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .quick-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+ {% endblock %}
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Grid/List view toggle
+    $('[data-view]').click(function() {
+        $('[data-view]').removeClass('active');
+        $(this).addClass('active');
+        
+        if ($(this).data('view') === 'grid') {
+            // Switch to grid view
+            $('#productsGridView').removeClass('d-none').addClass('row');
+        } else {
+            // Switch to list view - you can implement list view HTML here
+            alert('List view coming soon!');
+        }
+    });
+    
+    // Size filter
+    $('.size-filter').click(function() {
+        $('.size-filter').removeClass('active');
+        $(this).addClass('active');
+        showToast(`Filtering by size: ${$(this).data('size')}`, 'info');
+    });
+    
+    // Color filter
+    $('.color-filter').click(function() {
+        $('.color-filter').css({
+            'transform': 'scale(1)',
+            'box-shadow': 'none'
+        });
+        $(this).css({
+            'transform': 'scale(1.1)',
+            'box-shadow': '0 0 0 2px white, 0 0 0 4px var(--bs-primary)'
+        });
+        showToast(`Filtering by color: ${$(this).data('color')}`, 'info');
+    });
+    
+    // Price filter
+    $('#applyPriceFilter, #mobileApplyPrice').click(function() {
+        const min = $('#minPrice').val() || $('#mobileMinPrice').val();
+        const max = $('#maxPrice').val() || $('#mobileMaxPrice').val();
+        showToast(`Filtering price: $${min} - $${max}`, 'info');
+    });
+    
+    // Clear filters
+    $('#clearFilters').click(function() {
+        $('input[type=checkbox]').prop('checked', false);
+        $('.size-filter').removeClass('active');
+        $('.color-filter').css({
+            'transform': 'scale(1)',
+            'box-shadow': 'none'
+        });
+        $('#minPrice, #mobileMinPrice').val('0');
+        $('#maxPrice, #mobileMaxPrice').val('500');
+        showToast('All filters cleared', 'success');
+    });
+    
+    // Sort
+    $('#sortSelect').change(function() {
+        const sortValue = $(this).val();
+        const sortText = $(this).find('option:selected').text();
+        showToast(`Sorting by: ${sortText}`, 'info');
+    });
+});
+
+// Toast notification function
+function showToast(message, type = 'success') {
+    const toast = $('<div>')
+        .addClass(`toast-notification ${type}`)
+        .html(`
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+        `);
+    
+    $('body').append(toast);
+    
+    setTimeout(function() {
+        toast.css('animation', 'slideOut 0.3s ease');
+        setTimeout(function() {
+            toast.remove();
+        }, 300);
+    }, 3000);
+}
+</script>
+{% endblock %}

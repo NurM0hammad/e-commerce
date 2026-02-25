@@ -1,0 +1,96 @@
+{% load static %}
+<header class="bg-white shadow-sm sticky-top">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between py-3">
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-link d-lg-none p-0 text-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                    <i class="fas fa-bars fs-4"></i>
+                </button>
+                <a href="{% url 'core:home' %}" class="text-decoration-none">
+                    <span class="fw-bold fs-3 text-primary">Borcelle</span><span class="fw-bold fs-3">
+                                    </span>
+                            </a>
+            </div>
+
+            <div class="flex-grow-1 mx-4 d-none d-md-block" style="max-width: 500px;">
+                <form action="{% url 'products:shop' %}" method="GET" class="d-flex">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control rounded-pill-start" placeholder="Search for products, brands and more..." value="{{ request.GET.q }}">
+                        <button class="btn btn-primary rounded-pill-end" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        <!-- Mobile Search (visible only on mobile) -->
+        <div class="d-md-none pb-3">
+            <form action="{% url 'products:shop' %}" method="GET" class="d-flex">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control rounded-pill-start" placeholder="Search products...">
+                    <button class="btn btn-primary rounded-pill-end" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Offcanvas Menu -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header bg-primary text-white">
+        <h5 class="offcanvas-title" id="mobileMenuLabel">
+            <span class="fw-bold">Shop</span><span class="fw-bold text-warning">Wave</span>
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <div class="list-group list-group-flush">
+            <a href="{% url 'core:home' %}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3">
+                <i class="fas fa-home text-primary" style="width: 24px;"></i>
+                <span>Home</span>
+            </a>
+            <a href="{% url 'products:shop' %}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3">
+                <i class="fas fa-store text-primary" style="width: 24px;"></i>
+                <span>Shop</span>
+            </a>
+            <a href="{% url 'products:categories' %}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3">
+                <i class="fas fa-th-large text-primary" style="width: 24px;"></i>
+                <span>Categories</span>
+            </a>
+            <a href="{% url 'products:deals' %}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3">
+                <i class="fas fa-tags text-primary" style="width: 24px;"></i>
+                <span>Deals</span>
+            </a>
+            <a href="{% url 'core:contact' %}" class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3">
+                <i class="fas fa-envelope text-primary" style="width: 24px;"></i>
+                <span>Contact</span>
+            </a>
+        </div>
+        
+        <div class="p-3 border-top">
+            <h6 class="fw-bold mb-3">Quick Categories</h6>
+            <div class="d-flex flex-wrap gap-2">
+                {% if nav_categories %}
+                    {% for cat in nav_categories|slice:":4" %}
+                    <a href="{% url 'products:category_detail' cat.slug %}" class="badge bg-light text-dark text-decoration-none p-2">{{ cat.name }}</a>
+                    {% endfor %}
+                {% else %}
+                    <a href="{% url 'products:shop' %}?category=men" class="badge bg-light text-dark text-decoration-none p-2">Men</a>
+                    <a href="{% url 'products:shop' %}?category=women" class="badge bg-light text-dark text-decoration-none p-2">Women</a>
+                    <a href="{% url 'products:shop' %}?category=electronics" class="badge bg-light text-dark text-decoration-none p-2">Electronics</a>
+                    <a href="{% url 'products:shop' %}?category=accessories" class="badge bg-light text-dark text-decoration-none p-2">Accessories</a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="p-3 border-top">
+            <h6 class="fw-bold mb-3">Contact</h6>
+            <p class="small text-secondary mb-1"><i class="fas fa-phone text-primary me-2"></i>+1 (800) 555-0123</p>
+            <p class="small text-secondary mb-1"><i class="fas fa-envelope text-primary me-2"></i>support@shopwave.com</p>
+        </div>
+    </div>
+</div>

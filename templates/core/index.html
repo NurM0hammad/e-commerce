@@ -1,0 +1,500 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Borcelle | Home - Modern eCommerce{% endblock %}
+
+{% block content %}
+<!-- Hero Slider Section -->
+<section class="hero-section py-4">
+    <div class="container">
+        <div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4 shadow">
+                <div class="carousel-item active">
+                    <div class="row align-items-center p-5" style="background: linear-gradient(135deg, #e8eeff, #fff7d4); min-height: 500px;">
+                        <div class="col-lg-6">
+                            <span class="badge bg-warning text-dark px-3 py-2 mb-3">Summer Collection 2026</span>
+                            <h1 class="display-3 fw-bold mb-3">New <span class="text-primary">Arrivals</span></h1>
+                            <p class="lead text-secondary mb-4">Discover the latest trends in fashion and electronics</p>
+                            <div class="d-flex gap-3">
+                                <a href="{% url 'products:shop' %}" class="btn btn-primary btn-lg rounded-pill px-4">Shop Now <i class="fas fa-arrow-right ms-2"></i></a>
+                                <a href="{% url 'products:deals' %}" class="btn btn-outline-primary btn-lg rounded-pill px-4">View Deals</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <img src="{% static 'images/index/i2.png' %}" alt="Summer Collection" class="img-fluid floating" style="max-height: 350px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row align-items-center p-5" style="background: linear-gradient(135deg, #1e4dd8, #fbbf24); min-height: 500px;">
+                        <div class="col-lg-6 text-white">
+                            <span class="badge bg-light text-dark px-3 py-2 mb-3">Flash Sale</span>
+                            <h1 class="display-3 fw-bold mb-3">Up to <span class="text-warning">50% Off</span></h1>
+                            <p class="lead text-white-50 mb-4">Limited time offers on selected items</p>
+                            <div class="d-flex gap-3">
+                                <a href="{% url 'products:deals' %}" class="btn btn-warning btn-lg rounded-pill px-4">Grab Deals <i class="fas fa-bolt ms-2"></i></a>
+                                <a href="{% url 'products:shop' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">Browse All</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 text-center">
+                            <img src="{% static 'images/index/i.png' %}" alt="Flash Sale" class="img-fluid floating" style="max-height: 350px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-primary rounded-circle p-3" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-4 h-100">
+                    <div class="feature-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="fas fa-truck fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold">Free Shipping</h5>
+                    <p class="text-secondary mb-0">On orders over $50</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-4 h-100">
+                    <div class="feature-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="fas fa-undo-alt fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold">30-Day Returns</h5>
+                    <p class="text-secondary mb-0">Hassle-free returns</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-4 h-100">
+                    <div class="feature-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="fas fa-shield-alt fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold">Secure Payment</h5>
+                    <p class="text-secondary mb-0">100% secure checkout</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-4 h-100">
+                    <div class="feature-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                        <i class="fas fa-headset fs-3"></i>
+                    </div>
+                    <h5 class="fw-bold">24/7 Support</h5>
+                    <p class="text-secondary mb-0">Dedicated customer service</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="categories-section py-5">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-th-large fs-2 text-warning"></i>
+                <h2 class="fw-bold mb-0">Shop by Category</h2>
+            </div>
+            <a href="{% url 'products:categories' %}" class="text-primary text-decoration-none fw-bold">
+                View All <i class="fas fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+
+        <div class="row g-4">
+            <!-- Category 1 -->
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'products:shop' %}?category=men" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-4 category-card">
+                        <div class="category-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-user-tie fs-2"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark">Men's Fashion</h5>
+                        <p class="text-secondary mb-2">248 Products</p>
+                        <span class="text-primary">Shop Now <i class="fas fa-arrow-right ms-1"></i></span>
+                    </div>
+                </a>
+            </div>
+            <!-- Category 2 -->
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'products:shop' %}?category=women" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-4 category-card">
+                        <div class="category-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-user-nurse fs-2"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark">Women's Fashion</h5>
+                        <p class="text-secondary mb-2">356 Products</p>
+                        <span class="text-primary">Shop Now <i class="fas fa-arrow-right ms-1"></i></span>
+                    </div>
+                </a>
+            </div>
+            <!-- Category 3 -->
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'products:shop' %}?category=electronics" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-4 category-card">
+                        <div class="category-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-laptop fs-2"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark">Electronics</h5>
+                        <p class="text-secondary mb-2">189 Products</p>
+                        <span class="text-primary">Shop Now <i class="fas fa-arrow-right ms-1"></i></span>
+                    </div>
+                </a>
+            </div>
+            <!-- Category 4 -->
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'products:shop' %}?category=accessories" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm text-center p-4 category-card">
+                        <div class="category-icon bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-clock fs-2"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark">Accessories</h5>
+                        <p class="text-secondary mb-2">124 Products</p>
+                        <span class="text-primary">Shop Now <i class="fas fa-arrow-right ms-1"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="products-section py-5 bg-light">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-star fs-2 text-warning"></i>
+                <h2 class="fw-bold mb-0">Featured Products</h2>
+            </div>
+            <a href="{% url 'products:shop' %}" class="text-primary text-decoration-none fw-bold">
+                View All <i class="fas fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+
+        <div class="row g-4">
+            <!-- Product 1 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 product-card">
+                    <div class="position-relative">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3">-30%</span>
+                        <img src="{% static 'images/index/Product/t1.png' %}" class="card-img-top" alt="Product" style="height: 250px; object-fit: cover;">
+                        <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="101">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary small mb-1">Men's Fashion</p>
+                        <h6 class="fw-bold mb-2">Classic T Shirt</h6>
+                        <div class="text-warning small mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="text-secondary ms-1">(128)</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="fs-5 fw-bold text-primary">$49.99</span>
+                            <span class="text-decoration-line-through text-secondary">$79.99</span>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="101">
+                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 product-card">
+                    <div class="position-relative">
+                        <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-3"><i class="fas fa-bolt me-1"></i>DEAL</span>
+                        <img src="{% static 'images/index/Product/t2.png' %}" class="card-img-top" alt="Product" style="height: 250px; object-fit: cover;">
+                        <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="102">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary small mb-1">Women's Fashion</p>
+                        <h6 class="fw-bold mb-2">Summer Maxi Dress</h6>
+                        <div class="text-warning small mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span class="text-secondary ms-1">(89)</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="fs-5 fw-bold text-primary">$59.99</span>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="102">
+                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 product-card">
+                    <div class="position-relative">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3">-25%</span>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Product" style="height: 250px; object-fit: cover;">
+                        <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="103">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary small mb-1">Electronics</p>
+                        <h6 class="fw-bold mb-2">Sony WH-1000XM4</h6>
+                        <div class="text-warning small mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="text-secondary ms-1">(256)</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="fs-5 fw-bold text-primary">$299.99</span>
+                            <span class="text-decoration-line-through text-secondary">$399.99</span>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="103">
+                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100 product-card">
+                    <div class="position-relative">
+                        <span class="badge bg-success position-absolute top-0 start-0 m-3">NEW</span>
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Product" style="height: 250px; object-fit: cover;">
+                        <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3 quick-view" data-id="104">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary small mb-1">Accessories</p>
+                        <h6 class="fw-bold mb-2">Classic Leather Watch</h6>
+                        <div class="text-warning small mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            <span class="text-secondary ms-1">(42)</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="fs-5 fw-bold text-primary">$129.99</span>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="104">
+                            <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deals Banner -->
+<section class="deals-banner py-5 position-relative">
+    <div class="container position-relative">
+        <div class="row align-items-center p-5 rounded-4" style="background: linear-gradient(135deg, #1e4dd8, #fbbf24);">
+            <div class="col-lg-8 text-white">
+                <span class="badge bg-light text-dark px-3 py-2 mb-3">Limited Time Offer</span>
+                <h2 class="display-4 fw-bold mb-3">Summer Flash Sale</h2>
+                <p class="lead text-white-50 mb-4">Up to 50% off on selected items + extra 10% off for new customers</p>
+                <div class="d-flex gap-4 mb-4 flex-wrap">
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3">
+                        <span class="fs-2 fw-bold d-block" id="days">00</span>
+                        <span class="small">Days</span>
+                    </div>
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3">
+                        <span class="fs-2 fw-bold d-block" id="hours">00</span>
+                        <span class="small">Hours</span>
+                    </div>
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3">
+                        <span class="fs-2 fw-bold d-block" id="minutes">00</span>
+                        <span class="small">Minutes</span>
+                    </div>
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3">
+                        <span class="fs-2 fw-bold d-block" id="seconds">00</span>
+                        <span class="small">Seconds</span>
+                    </div>
+                </div>
+                <a href="{% url 'products:deals' %}" class="btn btn-warning btn-lg rounded-pill px-5">Shop Deals <i class="fas fa-bolt ms-2"></i></a>
+            </div>
+            <div class="col-lg-4 text-center ">
+                <img src="{% static 'images/Bannertwo.png' %}" alt="Flash Sale"  class="floating position-absolute top-50 end-0 translate-middle-y" style="height: 600px; ">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section py-5">
+    <div class="container">
+        <div class="row align-items-center bg-white p-5 rounded-4 shadow">
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-2">Subscribe to Our Newsletter</h3>
+                <p class="text-secondary mb-0">Get the latest updates on new products and upcoming sales</p>
+            </div>
+            <div class="col-lg-6">
+                <form class="d-flex gap-2" id="newsletterForm">
+                    {% csrf_token %}
+                    <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">Subscribe <i class="fas fa-paper-plane ms-2"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CSRF Token for AJAX -->
+{% csrf_token %}
+
+<style>
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.category-card, .product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover, .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.feature-icon {
+    transition: transform 0.5s ease;
+}
+
+.category-card:hover .feature-icon,
+.product-card:hover .feature-icon {
+    transform: rotateY(180deg);
+    background: var(--bs-warning) !important;
+    color: #000 !important;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Countdown Timer
+    function updateCountdown() {
+        const endTime = new Date().getTime() + 3 * 24 * 60 * 60 * 1000;
+        
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = endTime - now;
+            
+            if (diff <= 0) {
+                $('#days, #hours, #minutes, #seconds').text('00');
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            $('#days').text(days.toString().padStart(2, '0'));
+            $('#hours').text(hours.toString().padStart(2, '0'));
+            $('#minutes').text(minutes.toString().padStart(2, '0'));
+            $('#seconds').text(seconds.toString().padStart(2, '0'));
+        }
+        
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    }
+    updateCountdown();
+    
+    // Newsletter Form
+    $('#newsletterForm').submit(function(e) {
+        e.preventDefault();
+        alert('Thank you for subscribing!');
+        this.reset();
+    });
+    
+    // Add to Cart
+    $('.add-to-cart').click(function() {
+        const btn = $(this);
+        const originalText = btn.html();
+        
+        btn.html('<i class="fas fa-spinner fa-spin me-2"></i>Adding...').prop('disabled', true);
+        
+        setTimeout(function() {
+            btn.html('<i class="fas fa-check me-2"></i>Added!').removeClass('btn-primary').addClass('btn-success');
+            
+            // Update cart counter
+            const cartCounter = $('#cartCounter');
+            const currentCount = parseInt(cartCounter.text()) || 0;
+            cartCounter.text(currentCount + 1);
+            
+            setTimeout(function() {
+                btn.html(originalText).removeClass('btn-success').addClass('btn-primary').prop('disabled', false);
+            }, 2000);
+        }, 1000);
+    });
+    
+    // Quick View
+    $('.quick-view').click(function() {
+        const productId = $(this).data('id');
+        
+        // Create modal dynamically
+        const modalHtml = `
+            <div class="modal fade" id="quickViewModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Quick View</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center p-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        $('body').append(modalHtml);
+        const modal = new bootstrap.Modal(document.getElementById('quickViewModal'));
+        modal.show();
+        
+        setTimeout(function() {
+            $('#quickViewModal .modal-body').html(`
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://images.unsplash.com/photo-1596755094518-9943c5d0e9b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="img-fluid rounded-3" alt="Product">
+                    </div>
+                    <div class="col-md-6 text-start">
+                        <h3 class="fw-bold">Classic Oxford Shirt</h3>
+                        <div class="text-warning mb-3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <span class="text-secondary ms-2">(128 reviews)</span>
+                        </div>
+                        <h4 class="text-primary fw-bold mb-3">$49.99</h4>
+                        <p class="text-secondary mb-4">Premium quality cotton shirt, perfect for any occasion. Available in multiple colors and sizes.</p>
+                        <button class="btn btn-primary rounded-pill px-4">Add to Cart <i class="fas fa-shopping-cart ms-2"></i></button>
+                    </div>
+                </div>
+            `);
+        }, 1000);
+        
+        $('#quickViewModal').on('hidden.bs.modal', function() {
+            $(this).remove();
+        });
+    });
+});
+</script>
+{% endblock %}

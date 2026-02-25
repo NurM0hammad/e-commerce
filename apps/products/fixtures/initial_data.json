@@ -1,0 +1,50 @@
+[
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Men's Fashion",
+      "slug": "men",
+      "icon": "fa-shirt",
+      "description": "Modern clothing for men",
+      "is_active": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "Women's Fashion",
+      "slug": "women",
+      "icon": "fa-vest",
+      "description": "Trendy styles for women",
+      "is_active": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "name": "Electronics",
+      "slug": "electronics",
+      "icon": "fa-laptop",
+      "description": "Gadgets and devices",
+      "is_active": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "name": "Accessories",
+      "slug": "accessories",
+      "icon": "fa-clock",
+      "description": "Complete your look",
+      "is_active": true,
+      "order": 4
+    }
+  }
+]

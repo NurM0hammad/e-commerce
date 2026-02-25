@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Borcelle | All Categories{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header-section py-4">
+    <div class="container">
+        <div class="bg-light rounded-4 p-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-1">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-primary text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                </ol>
+            </nav>
+            <h1 class="fw-bold mb-0">All Categories</h1>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Grid -->
+<section class="categories-section py-4">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Category 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 category-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-user-tie fa-4x text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="fw-bold">Men's Fashion</h4>
+                                <p class="text-secondary small">Discover the latest trends in men's clothing, from casual wear to formal attire.</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-box me-1 text-primary"></i>248 Products</span>
+                                    <a href="{% url 'products:shop' %}?category=men" class="btn btn-outline-primary btn-sm rounded-pill">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 category-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-user-nurse fa-4x text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="fw-bold">Women's Fashion</h4>
+                                <p class="text-secondary small">Explore elegant dresses, trendy tops, and accessories for every occasion.</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-box me-1 text-primary"></i>356 Products</span>
+                                    <a href="{% url 'products:shop' %}?category=women" class="btn btn-outline-primary btn-sm rounded-pill">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 category-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-laptop fa-4x text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="fw-bold">Electronics</h4>
+                                <p class="text-secondary small">Shop the latest gadgets, headphones, smartwatches, and tech accessories.</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-box me-1 text-primary"></i>189 Products</span>
+                                    <a href="{% url 'products:shop' %}?category=electronics" class="btn btn-outline-primary btn-sm rounded-pill">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 category-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-clock fa-4x text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="fw-bold">Accessories</h4>
+                                <p class="text-secondary small">Complete your look with watches, jewelry, bags, and other accessories.</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-box me-1 text-primary"></i>124 Products</span>
+                                    <a href="{% url 'products:shop' %}?category=accessories" class="btn btn-outline-primary btn-sm rounded-pill">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 category-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-shoe-prints fa-4x text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="fw-bold">Footwear</h4>
+                                <p class="text-secondary small">Find the perfect pair of shoes for any occasion, from sneakers to formal shoes.</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-box me-1 text-primary"></i>97 Products</span>
+                                    <a href="{% url 'products:shop' %}?category=footwear" class="btn btn-outline-primary btn-sm rounded-pill">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 category-card">
+                    <div class="row g-0 h-100">
+                        <div class="col-md-4 bg-primary bg-opacity-10 d-flex align-items-center justify-content-center p-4">
+                            <i class="fas fa-bicycle fa-4x text-primary"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h4 class="fw-bold">Sports & Outdoors</h4>
+                                <p class="text-secondary small">Gear up for your next adventure with our sports and outdoor collection.</p>
+                                <div class="d-flex align-items-center justify-content-between mt-3">
+                                    <span class="badge bg-light text-dark"><i class="fas fa-box me-1 text-primary"></i>76 Products</span>
+                                    <a href="{% url 'products:shop' %}?category=sports" class="btn btn-outline-primary btn-sm rounded-pill">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Banner -->
+<section class="featured-banner py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center p-5 rounded-4" style="background: linear-gradient(135deg, #1e4dd8, #fbbf24);">
+            <div class="col-lg-8 text-white">
+                <h2 class="display-4 fw-bold mb-3">Summer Collection 2026</h2>
+                <p class="lead text-white-50 mb-4">Discover our newest arrivals across all categories. Limited time offers available.</p>
+                <a href="{% url 'products:shop' %}?sort=newest" class="btn btn-warning btn-lg rounded-pill px-5">
+                    Shop New Arrivals <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+            <div class="col-lg-4 text-center">
+                <img src="{% static 'images/Banner.png' %}" alt="Summer Collection" class="img-fluid floating" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+</style>
+{% endblock %}

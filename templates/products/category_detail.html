@@ -1,0 +1,347 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Borcelle | Hot Deals{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header-section py-4">
+    <div class="container">
+        <div class="bg-light rounded-4 p-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-1">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-primary text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Deals</li>
+                </ol>
+            </nav>
+            <h1 class="fw-bold mb-0">Hot Deals & Discounts</h1>
+        </div>
+    </div>
+</section>
+
+<!-- Flash Sale Banner -->
+<section class="flash-sale-banner py-4">
+    <div class="container">
+        <div class="row align-items-center p-5 rounded-4" style="background: linear-gradient(135deg, #1e4dd8, #fbbf24);">
+            <div class="col-lg-8 text-white">
+                <span class="badge bg-light text-dark px-3 py-2 mb-3"><i class="fas fa-bolt me-2 text-warning"></i>FLASH SALE</span>
+                <h2 class="display-4 fw-bold mb-3">Weekend Mega Sale</h2>
+                <p class="lead text-white-50 mb-4">Extra 20% off on all deals • Limited time only</p>
+                <div class="d-flex gap-3 flex-wrap mb-4" id="flashTimer">
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3" style="min-width: 100px;">
+                        <span class="fs-2 fw-bold d-block" id="dealDays">00</span>
+                        <span class="small">Days</span>
+                    </div>
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3" style="min-width: 100px;">
+                        <span class="fs-2 fw-bold d-block" id="dealHours">00</span>
+                        <span class="small">Hours</span>
+                    </div>
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3" style="min-width: 100px;">
+                        <span class="fs-2 fw-bold d-block" id="dealMinutes">00</span>
+                        <span class="small">Minutes</span>
+                    </div>
+                    <div class="text-center bg-white bg-opacity-25 rounded-3 px-4 py-3" style="min-width: 100px;">
+                        <span class="fs-2 fw-bold d-block" id="dealSeconds">00</span>
+                        <span class="small">Seconds</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <img src="{% static 'images/deals/flash-sale.png' %}" alt="Flash Sale" class="img-fluid floating" style="max-height: 200px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Deals Grid Section -->
+<section class="deals-section py-4">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-tags fs-2 text-warning"></i>
+                <h2 class="fw-bold mb-0">Best Deals Today</h2>
+            </div>
+            <select class="form-select w-auto" id="dealSort">
+                <option value="default">Featured</option>
+                <option value="discount-high">Biggest Discount</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+            </select>
+        </div>
+
+        <div class="row g-4" id="dealsGrid">
+            <!-- Deal 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 deal-card">
+                    <div class="position-relative">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3">-50%</span>
+                        <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3"><i class="fas fa-bolt me-1"></i>FLASH</span>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Deal" style="height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary small mb-1">Electronics</p>
+                        <h5 class="fw-bold mb-2">Wireless Noise-Cancelling Headphones</h5>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="fs-4 fw-bold text-danger">$89.99</span>
+                            <span class="text-decoration-line-through text-secondary">$179.99</span>
+                            <span class="badge bg-success ms-auto">Save $90</span>
+                        </div>
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 75%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-secondary mb-3">
+                            <span><i class="fas fa-fire text-danger me-1"></i>75 sold</span>
+                            <span><i class="fas fa-clock text-primary me-1"></i>25 left</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="small text-secondary"><i class="fas fa-hourglass-half text-warning me-1"></i>Ends in: <span class="fw-bold text-primary expiry-timer">23:59:59</span></span>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="201">
+                            <i class="fas fa-shopping-cart me-2"></i>Grab Deal
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deal 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 deal-card">
+                    <div class="position-relative">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3">-40%</span>
+                        <img src="https://images.unsplash.com/photo-1551537482-f2075a1d41f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Deal" style="height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary small mb-1">Men's Fashion</p>
+                        <h5 class="fw-bold mb-2">Leather Bomber Jacket</h5>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="fs-4 fw-bold text-danger">$119.99</span>
+                            <span class="text-decoration-line-through text-secondary">$199.99</span>
+                            <span class="badge bg-success ms-auto">Save $80</span>
+                        </div>
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 45%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-secondary mb-3">
+                            <span><i class="fas fa-fire text-danger me-1"></i>45 sold</span>
+                            <span><i class="fas fa-clock text-primary me-1"></i>12 left</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="small text-secondary"><i class="fas fa-hourglass-half text-warning me-1"></i>Ends in: <span class="fw-bold text-primary expiry-timer">23:59:59</span></span>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="202">
+                            <i class="fas fa-shopping-cart me-2"></i>Grab Deal
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deal 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100 deal-card">
+                    <div class="position-relative">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3">-35%</span>
+                        <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3"><i class="fas fa-bolt me-1"></i>FLASH</span>
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Deal" style="height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="card-body">
+                        <p class="text-secondary small mb-1">Accessories</p>
+                        <h5 class="fw-bold mb-2">Premium Smart Watch</h5>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="fs-4 fw-bold text-danger">$129.99</span>
+                            <span class="text-decoration-line-through text-secondary">$199.99</span>
+                            <span class="badge bg-success ms-auto">Save $70</span>
+                        </div>
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 60%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-secondary mb-3">
+                            <span><i class="fas fa-fire text-danger me-1"></i>60 sold</span>
+                            <span><i class="fas fa-clock text-primary me-1"></i>18 left</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <span class="small text-secondary"><i class="fas fa-hourglass-half text-warning me-1"></i>Ends in: <span class="fw-bold text-primary expiry-timer">23:59:59</span></span>
+                        </div>
+                        <button class="btn btn-primary w-100 rounded-pill add-to-cart" data-id="203">
+                            <i class="fas fa-shopping-cart me-2"></i>Grab Deal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Category Deals Section -->
+<section class="category-deals-section py-5 bg-light">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-tshirt fs-2 text-warning"></i>
+                <h2 class="fw-bold mb-0">Men's Deals</h2>
+            </div>
+            <a href="{% url 'products:shop' %}?category=men&deals=true" class="text-primary text-decoration-none fw-bold">
+                View All <i class="fas fa-arrow-right ms-1"></i>
+            </a>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-3 mini-deal-card">
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">-30%</span>
+                    <img src="https://images.unsplash.com/photo-1596755094518-9943c5d0e9b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
+                    <h6 class="fw-bold">Classic Shirt</h6>
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="fw-bold text-primary">$34.99</span>
+                        <span class="text-decoration-line-through text-secondary small">$49.99</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-3 mini-deal-card">
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
+                    <h6 class="fw-bold">Slim Jeans</h6>
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="fw-bold text-primary">$44.99</span>
+                        <span class="text-decoration-line-through text-secondary small">$59.99</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-3 mini-deal-card">
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">-40%</span>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
+                    <h6 class="fw-bold">Running Shoes</h6>
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="fw-bold text-primary">$59.99</span>
+                        <span class="text-decoration-line-through text-secondary small">$99.99</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm text-center p-3 mini-deal-card">
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-2">-35%</span>
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover; margin: 0 auto;">
+                    <h6 class="fw-bold">Sports Watch</h6>
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <span class="fw-bold text-primary">$79.99</span>
+                        <span class="text-decoration-line-through text-secondary small">$129.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.deal-card, .mini-deal-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deal-card:hover, .mini-deal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.progress-bar {
+    transition: width 0.3s ease;
+}
+</style>
+ {% endblock %}
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Countdown Timer
+    function updateCountdown() {
+        const endTime = new Date().getTime() + 3 * 24 * 60 * 60 * 1000;
+        
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = endTime - now;
+            
+            if (diff <= 0) {
+                $('#dealDays, #dealHours, #dealMinutes, #dealSeconds').text('00');
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            $('#dealDays').text(days.toString().padStart(2, '0'));
+            $('#dealHours').text(hours.toString().padStart(2, '0'));
+            $('#dealMinutes').text(minutes.toString().padStart(2, '0'));
+            $('#dealSeconds').text(seconds.toString().padStart(2, '0'));
+        }
+        
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    }
+    updateCountdown();
+    
+    // Individual deal timers
+    $('.expiry-timer').each(function() {
+        const timer = $(this);
+        let time = 24 * 60 * 60; // 24 hours in seconds
+        
+        function updateDealTimer() {
+            if (time <= 0) {
+                timer.text('Expired');
+                return;
+            }
+            
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+            
+            timer.text(
+                hours.toString().padStart(2, '0') + ':' +
+                minutes.toString().padStart(2, '0') + ':' +
+                seconds.toString().padStart(2, '0')
+            );
+            
+            time--;
+        }
+        
+        updateDealTimer();
+        setInterval(updateDealTimer, 1000);
+    });
+    
+    // Sort deals
+    $('#dealSort').change(function() {
+        const sortValue = $(this).val();
+        const $deals = $('.deal-card');
+        
+        const sorted = $deals.toArray().sort((a, b) => {
+            const aPrice = parseFloat($(a).find('.text-danger').text().replace('$', ''));
+            const bPrice = parseFloat($(b).find('.text-danger').text().replace('$', ''));
+            const aDiscount = parseInt($(a).find('.badge.bg-danger').first().text().replace('-', '').replace('%', ''));
+            const bDiscount = parseInt($(b).find('.badge.bg-danger').first().text().replace('-', '').replace('%', ''));
+            
+            switch(sortValue) {
+                case 'discount-high':
+                    return bDiscount - aDiscount;
+                case 'price-low':
+                    return aPrice - bPrice;
+                case 'price-high':
+                    return bPrice - aPrice;
+                default:
+                    return 0;
+            }
+        });
+        
+        $('#dealsGrid').html(sorted);
+    });
+});
+</script>
+{% endblock %}

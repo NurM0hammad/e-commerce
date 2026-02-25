@@ -1,0 +1,92 @@
+{% load static %}
+<footer class="bg-dark text-white-50 pt-5 mt-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="mb-4">
+                    <span class="fw-bold fs-3 text-primary">Borcelle</span>
+                </div>
+                <p class="small">Your premier destination for modern fashion and electronics. Quality products, exceptional service.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white-50 hover-white"><i class="fab fa-facebook-f fs-5"></i></a>
+                    <a href="#" class="text-white-50 hover-white"><i class="fab fa-instagram fs-5"></i></a>
+                    <a href="#" class="text-white-50 hover-white"><i class="fab fa-x-twitter fs-5"></i></a>
+                    <a href="#" class="text-white-50 hover-white"><i class="fab fa-pinterest fs-5"></i></a>
+                    <a href="#" class="text-white-50 hover-white"><i class="fab fa-youtube fs-5"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-6">
+                <h5 class="text-white mb-3">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Home</a></li>
+                    <li class="mb-2"><a href="{% url 'products:shop' %}" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Shop</a></li>
+                    <li class="mb-2"><a href="{% url 'products:categories' %}" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Categories</a></li>
+                    <li class="mb-2"><a href="{% url 'products:deals' %}" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Deals</a></li>
+                    <li class="mb-2"><a href="{% url 'core:contact' %}" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-3">Categories</h5>
+                <ul class="list-unstyled">
+                    {% if nav_categories %}
+                        {% for cat in nav_categories %}
+                        <li class="mb-2"><a href="{% url 'products:category_detail' cat.slug %}" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>{{ cat.name }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="mb-2"><a href="{% url 'products:shop' %}?category=men" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Men's Fashion</a></li>
+                        <li class="mb-2"><a href="{% url 'products:shop' %}?category=women" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Women's Fashion</a></li>
+                        <li class="mb-2"><a href="{% url 'products:shop' %}?category=electronics" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Electronics</a></li>
+                        <li class="mb-2"><a href="{% url 'products:shop' %}?category=accessories" class="text-white-50 text-decoration-none hover-white"><i class="fas fa-chevron-right me-2 small"></i>Accessories</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-3">Contact Info</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3 d-flex gap-3">
+                        <i class="fas fa-map-marker-alt text-warning"></i>
+                        <span class="small">123 Blue & Yellow St, San Francisco, CA 94105</span>
+                    </li>
+                    <li class="mb-3 d-flex gap-3">
+                        <i class="fas fa-phone text-warning"></i>
+                        <span class="small">+1 (800) 555-0123</span>
+                    </li>
+                    <li class="mb-3 d-flex gap-3">
+                        <i class="fas fa-envelope text-warning"></i>
+                        <span class="small">support@borcelle.com</span>
+                    </li>
+                    <li class="mb-3 d-flex gap-3">
+                        <i class="fas fa-clock text-warning"></i>
+                        <span class="small">Mon-Fri: 9am - 8pm</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="border-secondary">
+
+        <div class="row py-3">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="small mb-0">&copy; 2026 Borcelle. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <div class="d-flex justify-content-center justify-content-md-end gap-3 fs-4">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-discover"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.hover-white:hover {
+    color: white !important;
+}
+</style>

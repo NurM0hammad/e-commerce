@@ -1,0 +1,55 @@
+{% load static %}
+<nav class="bg-white border-bottom d-none d-lg-block">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between py-2">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a href="{% url 'core:home' %}" class="nav-link {% if request.path == '/' %}active bg-primary text-white{% else %}text-dark{% endif %} rounded-pill">
+                        <i class="fas fa-home me-1"></i>Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'products:shop' %}" class="nav-link {% if 'shop' in request.path %}active bg-primary text-white{% else %}text-dark{% endif %} rounded-pill">
+                        <i class="fas fa-store me-1"></i>Shop
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'products:categories' %}" class="nav-link {% if 'categories' in request.path %}active bg-primary text-white{% else %}text-dark{% endif %} rounded-pill">
+                        <i class="fas fa-th-large me-1"></i>Categories
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'products:deals' %}" class="nav-link {% if 'deals' in request.path %}active bg-primary text-white{% else %}text-dark{% endif %} rounded-pill">
+                        <i class="fas fa-tags me-1"></i>Deals
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'core:contact' %}" class="nav-link {% if 'contact' in request.path %}active bg-primary text-white{% else %}text-dark{% endif %} rounded-pill">
+                        <i class="fas fa-envelope me-1"></i>Contact
+                    </a>
+                </li>
+            </ul>
+
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-secondary small">Quick Shop:</span>
+                <div class="d-flex gap-2">
+                    {% if nav_categories %}
+                        {% for cat in nav_categories|slice:":3" %}
+                        <a href="{% url 'products:category_detail' cat.slug %}" class="text-decoration-none text-secondary hover-primary">{{ cat.name }}</a>
+                        {% endfor %}
+                    {% else %}
+                        <a href="{% url 'products:shop' %}?category=men" class="text-decoration-none text-secondary hover-primary">Men</a>
+                        <a href="{% url 'products:shop' %}?category=women" class="text-decoration-none text-secondary hover-primary">Women</a>
+                        <a href="{% url 'products:shop' %}?category=electronics" class="text-decoration-none text-secondary hover-primary">Electronics</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<style>
+.hover-primary:hover {
+    color: var(--bs-primary) !important;
+}
+</style>

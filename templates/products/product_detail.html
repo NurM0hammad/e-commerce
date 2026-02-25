@@ -1,0 +1,494 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | Borcelle{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<section class="breadcrumb-section py-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-primary text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'products:shop' %}" class="text-primary text-decoration-none">Shop</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'products:category_detail' product.category.slug %}" class="text-primary text-decoration-none">{{ product.category.name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.name|truncatechars:30 }}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Product Detail Section -->
+<section class="product-detail-section py-4">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Product Gallery -->
+            <div class="col-lg-6">
+                <div class="position-sticky" style="top: 100px;">
+                    <div class="main-image mb-3 position-relative">
+                        <img src="{{ product.image.url }}" class="img-fluid rounded-4 w-100" alt="{{ product.name }}" id="mainProductImage" style="height: 500px; object-fit: cover; cursor: zoom-in;">
+                        {% if product.discount_percent %}
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-3 fs-6">-{{ product.discount_percent }}%</span>
+                        {% endif %}
+                        {% if product.is_deal %}
+                        <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-3 fs-6"><i class="fas fa-bolt me-1"></i>DEAL</span>
+                        {% endif %}
+                        <button class="btn btn-light rounded-circle position-absolute bottom-0 end-0 m-3" id="zoomBtn">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="row g-2" id="thumbnailGallery">
+                        <div class="col-3">
+                            <img src="{{ product.image.url }}" class="img-fluid rounded-3 thumbnail active" alt="Thumbnail" style="height: 100px; width: 100%; object-fit: cover; cursor: pointer;" data-image="{{ product.image.url }}">
+                        </div>
+                        {% if product.image2 %}
+                        <div class="col-3">
+                            <img src="{{ product.image2.url }}" class="img-fluid rounded-3 thumbnail" alt="Thumbnail" style="height: 100px; width: 100%; object-fit: cover; cursor: pointer;" data-image="{{ product.image2.url }}">
+                        </div>
+                        {% endif %}
+                        <div class="col-3">
+                            <img src="https://images.unsplash.com/photo-1596755094518-9943c5d0e9b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="img-fluid rounded-3 thumbnail" alt="Thumbnail" style="height: 100px; width: 100%; object-fit: cover; cursor: pointer;" data-image="https://images.unsplash.com/photo-1596755094518-9943c5d0e9b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                        </div>
+                        <div class="col-3">
+                            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="img-fluid rounded-3 thumbnail" alt="Thumbnail" style="height: 100px; width: 100%; object-fit: cover; cursor: pointer;" data-image="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Info -->
+            <div class="col-lg-6">
+                <div class="product-info">
+                    <div class="mb-3">
+                        <p class="text-secondary mb-1">{{ product.category.name }}</p>
+                        <h1 class="display-5 fw-bold mb-2">{{ product.name }}</h1>
+                        
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-secondary ms-2">(128 reviews)</span>
+                            </div>
+                            <span class="text-secondary">|</span>
+                            <span class="text-secondary">SKU: SKU-{{ product.id|stringformat:"06d" }}</span>
+                        </div>
+                        
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <span class="display-6 fw-bold text-primary">${{ product.price }}</span>
+                            {% if product.old_price %}
+                            <span class="fs-4 text-decoration-line-through text-secondary">${{ product.old_price }}</span>
+                            <span class="badge bg-success fs-6">Save ${{ product.old_price|add:product.price|floatformat:2 }}</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge {% if product.stock > 0 %}bg-success{% else %}bg-danger{% endif %} p-2">
+                                    <i class="fas {% if product.stock > 0 %}fa-check-circle{% else %}fa-times-circle{% endif %} me-1"></i>
+                                    {% if product.stock > 0 %}In Stock ({{ product.stock }} available){% else %}Out of Stock{% endif %}
+                                </span>
+                                {% if product.stock < 10 and product.stock > 0 %}
+                                <span class="badge bg-warning text-dark">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>Only {{ product.stock }} left!
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-2">Description</h5>
+                            <p class="text-secondary">{{ product.description|linebreaks }}</p>
+                        </div>
+                        
+                        <!-- Product Variants -->
+                        <div class="mb-4">
+                            <h5 class="fw-bold mb-2">Color: <span class="text-primary" id="selectedColor">Blue</span></h5>
+                            <div class="d-flex gap-2 mb-3">
+                                <div class="color-option" style="width: 35px; height: 35px; background: #1e4dd8; border-radius: 50%; cursor: pointer;" data-color="Blue"></div>
+                                <div class="color-option" style="width: 35px; height: 35px; background: #fbbf24; border-radius: 50%; cursor: pointer;" data-color="Yellow"></div>
+                                <div class="color-option" style="width: 35px; height: 35px; background: #000000; border-radius: 50%; cursor: pointer;" data-color="Black"></div>
+                                <div class="color-option" style="width: 35px; height: 35px; background: #ffffff; border: 1px solid #ddd; border-radius: 50%; cursor: pointer;" data-color="White"></div>
+                            </div>
+                            
+                            <h5 class="fw-bold mb-2">Size: <span class="text-primary" id="selectedSize">M</span></h5>
+                            <div class="d-flex gap-2 flex-wrap mb-3">
+                                <span class="size-option border rounded-pill px-3 py-1" data-size="XS">XS</span>
+                                <span class="size-option border rounded-pill px-3 py-1" data-size="S">S</span>
+                                <span class="size-option border rounded-pill px-3 py-1 active" data-size="M">M</span>
+                                <span class="size-option border rounded-pill px-3 py-1" data-size="L">L</span>
+                                <span class="size-option border rounded-pill px-3 py-1" data-size="XL">XL</span>
+                                <span class="size-option border rounded-pill px-3 py-1 text-secondary disabled" data-size="XXL">XXL</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantity and Actions -->
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="d-flex align-items-center border rounded-pill">
+                                <button class="btn btn-link text-dark" id="decreaseQty">−</button>
+                                <input type="number" class="form-control border-0 text-center" id="quantity" value="1" min="1" max="{{ product.stock }}" style="width: 70px;">
+                                <button class="btn btn-link text-dark" id="increaseQty">+</button>
+                            </div>
+                            
+                            <button class="btn btn-primary flex-grow-1 rounded-pill py-2" id="addToCartBtn" data-id="{{ product.id }}" {% if product.stock == 0 %}disabled{% endif %}>
+                                <i class="fas fa-shopping-cart me-2"></i>{% if product.stock > 0 %}Add to Cart{% else %}Sold Out{% endif %}
+                            </button>
+                            
+                            <button class="btn btn-outline-danger rounded-circle" style="width: 45px; height: 45px;" id="wishlistBtn">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Delivery Info -->
+                        <div class="bg-light rounded-4 p-3 mb-4">
+                            <div class="d-flex align-items-center gap-3 mb-2">
+                                <i class="fas fa-truck fs-4 text-primary"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Free Delivery</h6>
+                                    <small class="text-secondary">Free shipping on orders over $50</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mb-2">
+                                <i class="fas fa-undo-alt fs-4 text-primary"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Easy Returns</h6>
+                                    <small class="text-secondary">30-day return policy</small>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <i class="fas fa-shield-alt fs-4 text-primary"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Secure Payment</h6>
+                                    <small class="text-secondary">SSL encrypted checkout</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Share -->
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="fw-semibold">Share:</span>
+                            <a href="#" class="text-secondary hover-primary"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-secondary hover-primary"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-secondary hover-primary"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" class="text-secondary hover-primary"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Tabs -->
+<section class="product-tabs-section py-5 bg-light">
+    <div class="container">
+        <ul class="nav nav-tabs" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab">Details</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab">Specifications</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Reviews (128)</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping" type="button" role="tab">Shipping & Returns</button>
+            </li>
+        </ul>
+        
+        <div class="tab-content p-4 bg-white rounded-4 shadow-sm" id="productTabsContent">
+            <div class="tab-pane fade show active" id="details" role="tabpanel">
+                <h5 class="fw-bold mb-3">Product Details</h5>
+                <p class="text-secondary">{{ product.description }}</p>
+                <ul class="list-unstyled mt-3">
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Premium quality material</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Comfortable fit</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Easy care</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Versatile style</li>
+                </ul>
+            </div>
+            
+            <div class="tab-pane fade" id="specs" role="tabpanel">
+                <h5 class="fw-bold mb-3">Technical Specifications</h5>
+                <table class="table table-borderless">
+                    <tr>
+                        <td class="fw-semibold" style="width: 200px;">Material</td>
+                        <td class="text-secondary">100% Cotton</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold">Care Instructions</td>
+                        <td class="text-secondary">Machine wash cold</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold">Country of Origin</td>
+                        <td class="text-secondary">Imported</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold">Fit Type</td>
+                        <td class="text-secondary">Regular Fit</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="tab-pane fade" id="reviews" role="tabpanel">
+                <div class="row mb-4">
+                    <div class="col-md-4 text-center">
+                        <h2 class="display-3 fw-bold text-primary">4.5</h2>
+                        <div class="text-warning mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="text-secondary">Based on 128 reviews</p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span style="width: 50px;">5 ★</span>
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar bg-warning" style="width: 70%"></div>
+                            </div>
+                            <span>90</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span style="width: 50px;">4 ★</span>
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar bg-warning" style="width: 20%"></div>
+                            </div>
+                            <span>25</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span style="width: 50px;">3 ★</span>
+                            <div class="progress flex-grow-1" style="height: 8px;">
+                                <div class="progress-bar bg-warning" style="width: 6%"></div>
+                            </div>
+                            <span>8</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-item border-bottom pb-3 mb-3">
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                        <div>
+                            <h6 class="fw-bold mb-0">John Doe</h6>
+                            <div class="text-warning small">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <small class="text-secondary ms-auto">2 days ago</small>
+                    </div>
+                    <p class="text-secondary">Great product! Exactly as described. The quality is excellent and shipping was fast.</p>
+                </div>
+            </div>
+            
+            <div class="tab-pane fade" id="shipping" role="tabpanel">
+                <h5 class="fw-bold mb-3">Shipping Information</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Delivery Time</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Standard Shipping</td>
+                            <td>5-7 business days</td>
+                            <td>$4.99</td>
+                        </tr>
+                        <tr>
+                            <td>Express Shipping</td>
+                            <td>2-3 business days</td>
+                            <td>$12.99</td>
+                        </tr>
+                        <tr>
+                            <td>Free Shipping</td>
+                            <td>5-7 business days</td>
+                            <td>Free over $50</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h5 class="fw-bold mt-4 mb-3">Return Policy</h5>
+                <p class="text-secondary">We accept returns within 30 days of delivery. Items must be unworn and in original packaging.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+<section class="related-products-section py-5">
+    <div class="container">
+        <h3 class="fw-bold mb-4">You May Also Like</h3>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Related" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-2">Classic White Shirt</h6>
+                        <span class="fw-bold text-primary">$39.99</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1596755094518-9943c5d0e9b9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Related" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-2">Blue Oxford Shirt</h6>
+                        <span class="fw-bold text-primary">$44.99</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Related" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-2">Slim Fit Jeans</h6>
+                        <span class="fw-bold text-primary">$49.99</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Related" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h6 class="fw-bold mb-2">Leather Watch</h6>
+                        <span class="fw-bold text-primary">$89.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.thumbnail {
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+}
+
+.thumbnail.active {
+    border: 2px solid var(--bs-primary);
+    opacity: 1;
+}
+
+.color-option {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--bs-primary);
+}
+
+.size-option {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.size-option:hover {
+    background-color: var(--bs-primary);
+    color: white;
+    border-color: var(--bs-primary);
+}
+
+.size-option.active {
+    background-color: var(--bs-primary);
+    color: white;
+    border-color: var(--bs-primary);
+}
+
+.size-option.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    background-color: #e9ecef;
+}
+
+.hover-primary:hover {
+    color: var(--bs-primary) !important;
+}
+
+#mainProductImage.zoomed {
+    transform: scale(1.5);
+    cursor: zoom-out;
+}
+</style>
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Thumbnail gallery
+    $('.thumbnail').click(function() {
+        $('.thumbnail').removeClass('active');
+        $(this).addClass('active');
+        $('#mainProductImage').attr('src', $(this).data('image'));
+    });
+    
+    // Zoom functionality
+    $('#zoomBtn').click(function() {
+        $('#mainProductImage').toggleClass('zoomed');
+    });
+    
+    // Quantity selector
+    $('#decreaseQty').click(function() {
+        let value = parseInt($('#quantity').val());
+        if (value > 1) {
+            $('#quantity').val(value - 1);
+        }
+    });
+    
+    $('#increaseQty').click(function() {
+        let value = parseInt($('#quantity').val());
+        let max = parseInt($('#quantity').attr('max'));
+        if (value < max) {
+            $('#quantity').val(value + 1);
+        }
+    });
+    
+    $('#quantity').change(function() {
+        let value = parseInt($(this).val());
+        let max = parseInt($(this).attr('max'));
+        if (value < 1) $(this).val(1);
+        if (value > max) $(this).val(max);
+    });
+    
+    // Color options
+    $('.color-option').click(function() {
+        $('.color-option').css({
+            'transform': 'scale(1)',
+            'box-shadow': 'none'
+        });
+        $(this).css({
+            'transform': 'scale(1.1)',
+            'box-shadow': '0 0 0 2px white, 0 0 0 4px var(--bs-primary)'
+        });
+        $('#selectedColor').text($(this).data('color'));
+    });
+    
+    // Size options
+    $('.size-option:not(.disabled)').click(function() {
+        $('.size-option').removeClass('active');
+        $(this).addClass('active');
+        $('#selectedSize').text($(this).data('size'));
+    });
+    
+    // Wishlist toggle
+    $('#wishlistBtn').click(function() {
+        $(this).toggleClass('btn-outline-danger btn-danger');
+        const icon = $(this).find('i');
+        if ($(this).hasClass('btn-danger')) {
+            icon.removeClass('far').addClass('fas');
+        } else {
+            icon.removeClass('fas').addClass('far');
+        }
+    });
+});
+</script>
+{% endblock %}
