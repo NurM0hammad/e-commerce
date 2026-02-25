@@ -27,9 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-    'products',
-    'cart',
+    'apps.core',
+    'apps.products',
+    'apps.cart',
     'debug_toolbar',
 ]
 
