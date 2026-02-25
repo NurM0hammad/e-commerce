@@ -42,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'shopwave_project.urls'
+ROOT_URLCONF = 'shopwave.urls'
 
 TEMPLATES = [
     {
