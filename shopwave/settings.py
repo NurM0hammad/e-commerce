@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'shopwave_project.wsgi.application'
+WSGI_APPLICATION = 'shopwave.wsgi.application'
 
 
 # Database
