@@ -1,0 +1,288 @@
+/* ========================================
+   ShopWave - Modern eCommerce CSS with Bootstrap Overrides
+   Blue (#1e4dd8) and Yellow (#fbbf24) Theme
+   ======================================== */
+
+/* Bootstrap Variable Overrides */
+:root {
+    --bs-primary: #1e4dd8;
+    --bs-primary-rgb: 30, 77, 216;
+    --bs-primary-dark: #1437a0;
+    --bs-warning: #fbbf24;
+    --bs-warning-rgb: 251, 191, 36;
+    --bs-warning-dark: #f59e0b;
+    --bs-danger: #ef4444;
+    --bs-success: #10b981;
+    --bs-light: #f9fafb;
+    --bs-dark: #1f2937;
+    
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--bs-dark);
+    background-color: var(--bs-light);
+    overflow-x: hidden;
+}
+
+/* Custom Button Styles */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-primary-dark);
+    border-color: var(--bs-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-outline-primary {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-warning {
+    background-color: var(--bs-warning);
+    border-color: var(--bs-warning);
+    color: var(--bs-dark);
+}
+
+.btn-warning:hover {
+    background-color: var(--bs-warning-dark);
+    border-color: var(--bs-warning-dark);
+    color: var(--bs-dark);
+}
+
+/* Badge Styles */
+.badge.bg-primary {
+    background-color: var(--bs-primary) !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--bs-warning) !important;
+    color: var(--bs-dark);
+}
+
+/* Breadcrumb Styles */
+.breadcrumb .breadcrumb-item a {
+    color: var(--bs-primary);
+    text-decoration: none;
+}
+
+.breadcrumb .breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card.shadow-sm:hover {
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* Product Card Specific */
+.product-card {
+    position: relative;
+}
+
+.product-card .badge {
+    z-index: 2;
+}
+
+.product-card .quick-view {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.product-card:hover .quick-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-card .card-img-top {
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+/* Category Card */
+.category-card {
+    transition: var(--transition);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.category-card .category-icon {
+    transition: var(--transition);
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Deal Card */
+.deal-card .progress {
+    height: 8px;
+    border-radius: 4px;
+}
+
+.deal-card .progress-bar {
+    background-color: var(--bs-warning);
+    transition: width 0.3s ease;
+}
+
+/* Form Styles */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+/* Pagination */
+.page-link {
+    color: var(--bs-primary);
+}
+
+.page-link:hover {
+    color: var(--bs-primary-dark);
+}
+
+.page-item.active .page-link {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+/* List Group */
+.list-group-item.active {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+/* Offcanvas */
+.offcanvas-header {
+    background-color: var(--bs-primary);
+}
+
+/* Toast Notifications */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--bs-success);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: slideIn 0.3s ease;
+}
+
+.toast-notification.error {
+    background: var(--bs-danger);
+}
+
+.toast-notification.info {
+    background: var(--bs-primary);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+    
+    h1.display-5 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .flash-sale-banner .d-flex {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    h1.display-4 {
+        font-size: 2rem;
+    }
+    
+    h1.display-5 {
+        font-size: 1.75rem;
+    }
+    
+    .btn-group {
+        width: 100%;
+    }
+    
+    .btn-group .btn {
+        flex: 1;
+    }
+}
